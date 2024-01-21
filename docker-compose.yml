@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  vue-app:
+    build:
+      context: "docker/vue/Dockerfile"
+    container_name: carta_front
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src/front:/app
+    tty: true
+    environment:
+      - NODE_ENV=development
