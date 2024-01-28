@@ -4,10 +4,10 @@ ENV TZ Asia/Tokyo
 
 WORKDIR /app
 
-COPY ./docker/vue/*.js /app
+# COPY ./docker/vue/*.js /app
 
-RUN apk update && \
-    npm install && \
-    npm install -g agentkeepalive --save \
-    npm install -g npm@latest && \
-    npm install -g @vue/cli
+RUN apt update
+    # npm install && \
+    # npm install -g agentkeepalive --save \
+    # npm install -g npm@latest && \
+    # npm install -g @vue/cli
