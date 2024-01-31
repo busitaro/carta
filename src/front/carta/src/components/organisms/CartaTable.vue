@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import CartaCard from "./CartaCard.vue";
+import CartaCard from "~/components/organisms/CartaCard.vue";
 
 export default {
   components: {

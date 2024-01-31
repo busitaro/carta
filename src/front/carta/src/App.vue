@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import CartaTable from './components/organisms/CartaTable.vue'
+import HelloWorld from '~/components/HelloWorld.vue'
+import CartaTable from '~/components/organisms/CartaTable.vue'
 
 export default {
   name: 'App',
