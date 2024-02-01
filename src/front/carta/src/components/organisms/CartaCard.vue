@@ -1,6 +1,6 @@
 <template>
   <div class="block w-32 h-40 bg-blue-200">
-    <img :src="imgPath" />
+    <img :src="imgPath" :alt="this.char"/>
   </div>
 </template>
 
@@ -14,8 +14,7 @@ export default {
   },
   computed: {
     imgPath() {
-      console.log(`~/assets/cards/${this.char}.png`);
-      return `~/assets/cards/${this.char}.png`;
+      return process.env.BASE_URL + `assets/cards/${this.char}.png`;
     },
   },
 };
