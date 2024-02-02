@@ -1,6 +1,6 @@
 <template>
-  <div class="block w-32 h-40 bg-blue-200">
-    <img :src="imgPath" :alt="this.char"/>
+  <div class="block w-32 h-36">
+    <img :src="imgPath" :alt="this.char" />
   </div>
 </template>
 
