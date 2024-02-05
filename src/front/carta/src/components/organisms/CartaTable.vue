@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import charactorJson from "~/assets/charactors.json";
 import CartaCard from "~/components/organisms/CartaCard.vue";
 
 export default {
@@ -19,6 +20,7 @@ export default {
   },
   data() {
     return {
+      foo: charactorJson,
       charactors: [],
     };
   },
@@ -27,7 +29,8 @@ export default {
   },
   methods: {
     getAllCharactors() {
-      return ["ア", "イ", "ウ"];
+      const charactors = charactorJson.charactors
+      return charactors
     },
   },
 };
