@@ -2,9 +2,9 @@
   <div class="block w-11/12 h-screen mx-auto bg-blue-100 p-10 flex flex-row">
     <CartaCard
       v-for="(char, index) in charactors"
-      v-model="visibleTest"
+      v-model="char.visibility"
       :key="index"
-      :char="char"
+      :char="char.char"
       class="m-2"
       @click="judge"
     />
@@ -31,7 +31,12 @@ export default {
   },
   methods: {
     getAllCharactors() {
-      const charactors = charactorJson.charactors;
+      const charactors = charactorJson.charactors.map((value) => {
+        return {
+          char: value,
+          visibility: true,
+        };
+      });
       return charactors;
     },
     judge() {
