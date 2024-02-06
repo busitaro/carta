@@ -1,5 +1,6 @@
 <template>
-  <CartaTable :all-charactors="allCharactors"> </CartaTable>
+  <button type="button" @click="startGame" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">スタート</button>
+  <CartaTable :all-charactors="allCharactors" :now-charactor="nowCharactor"/>
 </template>
 
 <script>
@@ -18,16 +19,14 @@ export default {
       leftCharactors: [],
     };
   },
-  beforeCreate() {
-    console.log("fooooooooooooooooooooo");
+  created() {
     this.allCharactors = charactorJson.charactors;
     this.leftCharactors = charactorJson.charactors;
-    console.log("🐶");
-    console.log(this.allCharactors);
-    // 最初の文字を決定
-    // this.pickNextChar();
   },
   methods: {
+    startGame() {
+      this.pickNextChar()
+    },
     pickNextChar() {
       // 次の文字をランダムに抽出
       const nextChar =
@@ -39,7 +38,9 @@ export default {
         (char) => char !== nextChar
       );
       // 現在の文字に設定
-      this.char = nextChar;
+      this.nowCharactor = nextChar;
+      // コンソール出力
+      console.log(`🍇 現在の文字「${this.nowCharactor}」`)
     },
   },
 };
@@ -52,6 +53,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>

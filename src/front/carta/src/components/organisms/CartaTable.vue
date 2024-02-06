@@ -6,7 +6,7 @@
       :key="index"
       :char="char.char"
       class="m-2"
-      @click="judge(char)"
+      @click="judge(char.char)"
     />
     <slot></slot>
   </div>
@@ -24,6 +24,9 @@ export default {
       type: Array,
       required: true,
     },
+    nowCharactor: {
+      type: String,
+    }
   },
   data() {
     return {
@@ -31,14 +34,13 @@ export default {
       visibleTest: true,
     };
   },
+  // watch: {
   mounted() {
-    this.charactors = this.getAllCharactors();
+    this.charactors = this.setUpAllCharactors(this.allCharactors);
   },
   methods: {
-    getAllCharactors() {
-      console.log("🐈");
-      console.log(this.allCharactors);
-      const charactors = this.allCharactors.charactors.map((value) => {
+    setUpAllCharactors(allCharactors) {
+      const charactors = allCharactors.map((value) => {
         return {
           char: value,
           visibility: true,
@@ -47,10 +49,24 @@ export default {
       return charactors;
     },
     judge(char) {
+      console.log(`現在の文字「${this.nowCharactor}」`)
+      console.log(`選んだ文字「${char}」`)
+      if (char === this.nowCharactor) {
+        this.correct(char)
+      } else {
+        this.incorrect(char)
+      }
+    },
+    correct(char) {
+      console.log(`🌸 正解！！！`)
       this.hiddenCard(char);
     },
+    incorrect() {
+      console.log(`🐣 不正解！！！`)
+    },
     hiddenCard(targetChar) {
-      const target = this.charactors.find((char) => char == targetChar);
+      console.log(this.charactors)
+      const target = this.charactors.find((char) => char.char === targetChar);
       if (target) {
         target.visibility = false;
       }
