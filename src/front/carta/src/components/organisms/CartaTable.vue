@@ -13,12 +13,17 @@
 </template>
 
 <script>
-import charactorJson from "~/assets/charactors.json";
 import CartaCard from "~/components/organisms/CartaCard.vue";
 
 export default {
   components: {
     CartaCard,
+  },
+  props: {
+    allCharactors: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
@@ -28,12 +33,12 @@ export default {
   },
   mounted() {
     this.charactors = this.getAllCharactors();
-    console.log("🐈");
-    console.log(this.charactors);
   },
   methods: {
     getAllCharactors() {
-      const charactors = charactorJson.charactors.map((value) => {
+      console.log("🐈");
+      console.log(this.allCharactors);
+      const charactors = this.allCharactors.charactors.map((value) => {
         return {
           char: value,
           visibility: true,
