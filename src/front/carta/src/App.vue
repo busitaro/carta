@@ -1,21 +1,16 @@
 <template>
-  <CartaTable>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </CartaTable>
+  <CartaTable> </CartaTable>
 </template>
 
 <script>
-import HelloWorld from '~/components/HelloWorld.vue'
-import CartaTable from '~/components/organisms/CartaTable.vue'
+import CartaTable from "~/components/organisms/CartaTable.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld,
-    CartaTable
-  }
-}
+    CartaTable,
+  },
+};
 </script>
 
 <style>
