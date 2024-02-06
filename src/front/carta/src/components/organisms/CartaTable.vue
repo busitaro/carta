@@ -6,7 +6,7 @@
       :key="index"
       :char="char.char"
       class="m-2"
-      @click="judge"
+      @click="judge(char)"
     />
     <slot></slot>
   </div>
@@ -28,6 +28,8 @@ export default {
   },
   mounted() {
     this.charactors = this.getAllCharactors();
+    console.log("🐈");
+    console.log(this.charactors);
   },
   methods: {
     getAllCharactors() {
@@ -39,8 +41,14 @@ export default {
       });
       return charactors;
     },
-    judge() {
-      this.visibleTest = false;
+    judge(char) {
+      this.hiddenCard(char);
+    },
+    hiddenCard(targetChar) {
+      const target = this.charactors.find((char) => char == targetChar);
+      if (target) {
+        target.visibility = false;
+      }
     },
   },
 };
