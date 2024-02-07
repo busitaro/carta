@@ -26,7 +26,7 @@ export default {
     },
     nowCharactor: {
       type: String,
-    }
+    },
   },
   data() {
     return {
@@ -49,23 +49,24 @@ export default {
       return charactors;
     },
     judge(char) {
-      console.log(`現在の文字「${this.nowCharactor}」`)
-      console.log(`選んだ文字「${char}」`)
+      console.log(`現在の文字「${this.nowCharactor}」`);
+      console.log(`選んだ文字「${char}」`);
       if (char === this.nowCharactor) {
-        this.correct(char)
+        this.correct(char);
       } else {
-        this.incorrect(char)
+        this.incorrect(char);
       }
     },
     correct(char) {
-      console.log(`🌸 正解！！！`)
+      console.log(`🌸 正解！！！`);
+      this.$emit("correct");
       this.hiddenCard(char);
     },
     incorrect() {
-      console.log(`🐣 不正解！！！`)
+      console.log(`🐣 不正解！！！`);
     },
     hiddenCard(targetChar) {
-      console.log(this.charactors)
+      console.log(this.charactors);
       const target = this.charactors.find((char) => char.char === targetChar);
       if (target) {
         target.visibility = false;
