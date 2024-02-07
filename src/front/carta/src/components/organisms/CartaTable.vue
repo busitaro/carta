@@ -20,6 +20,10 @@ export default {
     CartaCard,
   },
   props: {
+    gameCount: {
+      type: Number,
+      required: true,
+    },
     allCharactors: {
       type: Array,
       required: true,
@@ -34,11 +38,17 @@ export default {
       visibleTest: true,
     };
   },
-  // watch: {
-  mounted() {
-    this.charactors = this.setUpAllCharactors(this.allCharactors);
+  watch: {
+    gameCount(value) {
+      console.log(`gameCountが変わりました: ${value}`);
+      // ゲーム開始
+      this.startGame();
+    },
   },
   methods: {
+    startGame() {
+      this.charactors = this.setUpAllCharactors(this.allCharactors);
+    },
     setUpAllCharactors(allCharactors) {
       const charactors = allCharactors.map((value) => {
         return {

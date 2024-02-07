@@ -4,9 +4,10 @@
     @click="startGame"
     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
   >
-    スタート
+    {{ startButtonLabel }}
   </button>
   <CartaTable
+    :game-count="gameCount"
     :all-charactors="allCharactors"
     :now-charactor="nowCharactor"
     @correct="chooseCorrect"
@@ -24,18 +25,28 @@ export default {
   },
   data() {
     return {
+      gameCount: 0,
       nowCharactor: "",
       allCharactors: [],
       leftCharactors: [],
+      startButtonLabel: "スタート",
     };
-  },
-  created() {
-    this.allCharactors = charactorJson.charactors;
-    this.leftCharactors = charactorJson.charactors;
   },
   methods: {
     startGame() {
+      this.switchResetButtonLabel();
+      this.resetCharactors();
       this.pickNextChar();
+      this.gameCount++;
+    },
+    resetCharactors() {
+      this.allCharactors = charactorJson.charactors;
+      this.leftCharactors = charactorJson.charactors;
+      console.log("🍊 reset");
+      console.log("↓ allCharactors");
+      console.log(this.allCharactors);
+      console.log("↓ leftCharactors");
+      console.log(this.leftCharactors);
     },
     chooseCorrect() {
       this.pickNextChar();
@@ -54,6 +65,9 @@ export default {
       this.nowCharactor = nextChar;
       // コンソール出力
       console.log(`🍇 現在の文字「${this.nowCharactor}」`);
+    },
+    switchResetButtonLabel() {
+      this.startButtonLabel = "リセット";
     },
   },
 };
