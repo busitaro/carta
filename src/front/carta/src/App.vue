@@ -12,16 +12,19 @@
     :now-charactor="nowCharactor"
     @correct="chooseCorrect"
   />
+  <periodImage v-model="correctImageShow" />
 </template>
 
 <script>
 import charactorJson from "~/assets/charactors.json";
 import CartaTable from "~/components/organisms/CartaTable.vue";
+import periodImage from "~/components/molecules/PeriodImage.vue";
 
 export default {
   name: "App",
   components: {
     CartaTable,
+    periodImage,
   },
   data() {
     return {
@@ -30,6 +33,7 @@ export default {
       allCharactors: [],
       leftCharactors: [],
       startButtonLabel: "スタート",
+      correctImageShow: false,
     };
   },
   methods: {
@@ -49,6 +53,7 @@ export default {
       console.log(this.leftCharactors);
     },
     chooseCorrect() {
+      this.correctImageShow = true;
       this.pickNextChar();
     },
     pickNextChar() {
