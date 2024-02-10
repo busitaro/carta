@@ -12,7 +12,7 @@
     :now-charactor="nowCharactor"
     @correct="chooseCorrect"
   />
-  <periodImage v-model="correctImageShow" />
+  <periodImage v-model="correctImageShow" :img-path="correctImagePath"/>
 </template>
 
 <script>
@@ -34,6 +34,7 @@ export default {
       leftCharactors: [],
       startButtonLabel: "スタート",
       correctImageShow: false,
+      correctImagePath: `${process.env.BASE_URL}assets/images/correct1.png`
     };
   },
   methods: {

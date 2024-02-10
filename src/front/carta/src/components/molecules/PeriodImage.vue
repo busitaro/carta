@@ -9,13 +9,22 @@ export default {
   props: {
     modelValue: {
       type: Boolean,
+      required: true,
     },
+    imgPath: {
+      type: String,
+      required: true,
+    }
   },
-  computed: {
-    imgPath() {
-      return process.env.BASE_URL + `assets/images/correct1.png`;
-    },
-  },
+  watch: {
+    async modelValue(value) {
+      const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+      if (value) {
+        await sleep(1000)
+        this.$emit('update:modelValue', false)
+      }
+    }
+  }
 };
 </script>
 <style scoped>
