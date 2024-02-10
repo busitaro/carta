@@ -73,7 +73,7 @@ export default {
       // 正解の表示
       this.playCorrectSound();
       this.correctImageShow = true;
-      await sleep(1000);
+      await sleep(2000);
 
       this.pickNextChar();
       if (this.nowCharactor) {
