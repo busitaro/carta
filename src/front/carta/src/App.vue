@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import charactorJson from "~/assets/charactors.json";
 import CartaTable from "~/components/organisms/CartaTable.vue";
 import periodImage from "~/components/molecules/PeriodImage.vue";
 
@@ -28,6 +27,7 @@ export default {
   },
   data() {
     return {
+      charactorJson: [],
       gameCount: 0,
       nowCharactor: "",
       allCharactors: [],
@@ -38,15 +38,27 @@ export default {
     };
   },
   methods: {
-    startGame() {
+    async startGame() {
+      await this.getCharactorsJson();
       this.switchResetButtonLabel();
       this.resetCharactors();
       this.pickNextChar();
       this.gameCount++;
     },
+    async getCharactorsJson() {
+      await fetch(`${process.env.BASE_URL}assets/charactors.json`)
+        .then(response => {
+          return response.json();
+        })
+        .then(json => {
+          console.log('🍌')
+          console.log(json)
+          this.charactorJson = json.charactors;
+        })
+    },
     resetCharactors() {
-      this.allCharactors = charactorJson.charactors;
-      this.leftCharactors = charactorJson.charactors;
+      this.allCharactors = this.charactorJson;
+      this.leftCharactors = this.charactorJson;
       console.log("🍊 reset");
       console.log("↓ allCharactors");
       console.log(this.allCharactors);
