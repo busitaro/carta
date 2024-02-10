@@ -59,7 +59,10 @@ export default {
         })
     },
     resetCharactors() {
+      // 文字はランダム
       this.allCharactors = this.charactorJson;
+      this.allCharactors = this.allCharactors.sort(() => Math.random() - 0.5)
+      // まだとられていない文字
       this.leftCharactors = this.charactorJson;
       console.log("🍊 reset");
       console.log("↓ allCharactors");
