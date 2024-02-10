@@ -1,6 +1,6 @@
 <template>
   <div class="block w-32 h-36">
-    <img :src="imgPath" :alt="this.char" :class="{ hidden: !modelValue }" />
+    <img v-if="modelValue" :src="imgPath" :alt="this.char" />
   </div>
 </template>
 
@@ -22,8 +22,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.hidden {
-  visibility: hidden;
-}
-</style>

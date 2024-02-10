@@ -6,7 +6,7 @@
       :key="index"
       :char="char.char"
       class="m-2"
-      @click="judge(char.char)"
+      @click="judge(char.char, char.visibility)"
     />
     <slot></slot>
   </div>
@@ -58,13 +58,15 @@ export default {
       });
       return charactors;
     },
-    judge(char) {
-      console.log(`現在の文字「${this.nowCharactor}」`);
-      console.log(`選んだ文字「${char}」`);
-      if (char === this.nowCharactor) {
-        this.correct(char);
-      } else {
-        this.incorrect(char);
+    judge(char, visibility) {
+      if (visibility) {
+        console.log(`現在の文字「${this.nowCharactor}」`);
+        console.log(`選んだ文字「${char}」`);
+        if (char === this.nowCharactor) {
+          this.correct(char);
+        } else {
+          this.incorrect(char);
+        }
       }
     },
     correct(char) {
