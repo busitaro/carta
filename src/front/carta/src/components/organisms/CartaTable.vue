@@ -76,6 +76,7 @@ export default {
     },
     incorrect() {
       console.log(`🐣 不正解！！！`);
+      this.$emit("incorrect");
     },
     hiddenCard(targetChar) {
       console.log(this.charactors);

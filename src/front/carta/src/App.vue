@@ -11,6 +11,7 @@
     :all-charactors="allCharactors"
     :now-charactor="nowCharactor"
     @correct="chooseCorrect"
+    @incorrect="chooseIncorrect"
   />
   <periodImage v-model="correctImageShow" :img-path="correctImagePath"/>
 </template>
@@ -43,6 +44,7 @@ export default {
       this.switchResetButtonLabel();
       this.resetCharactors();
       this.pickNextChar();
+      this.playYomifuda(this.nowCharactor);
       this.gameCount++;
     },
     async getCharactorsJson() {
@@ -65,9 +67,21 @@ export default {
       console.log("↓ leftCharactors");
       console.log(this.leftCharactors);
     },
-    chooseCorrect() {
+    async chooseCorrect() {
+      const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
+
+      // 正解の表示
+      this.playCorrectSound();
       this.correctImageShow = true;
+      await sleep(1000);
+
       this.pickNextChar();
+      if (this.nowCharactor) {
+        this.playYomifuda(this.nowCharactor);
+      }
+    },
+    chooseIncorrect() {
+      this.playIncorrectSound();
     },
     pickNextChar() {
       // 次の文字をランダムに抽出
@@ -83,6 +97,18 @@ export default {
       this.nowCharactor = nextChar;
       // コンソール出力
       console.log(`🍇 現在の文字「${this.nowCharactor}」`);
+    },
+    playYomifuda(char) {
+      const audio = new Audio(process.env.BASE_URL + `assets/sounds/${char}.mp3`)
+      audio.play();
+    },
+    playCorrectSound() {
+      const audio = new Audio(process.env.BASE_URL + `assets/sounds/correct.mp3`)
+      audio.play()
+    },
+    playIncorrectSound() {
+      const audio = new Audio(process.env.BASE_URL + `assets/sounds/incorrect.mp3`)
+      audio.play()
     },
     switchResetButtonLabel() {
       this.startButtonLabel = "リセット";
